@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Warna */
+  --color-brand-900: #2F4A27;
+  --color-brand-700: #46663A;
+  --color-brand-500: #557A45;
+  --color-brand-100: #E3EBDA;
+  --color-gold-500: #E2B23A;
+  --color-page: #F5F6EF;
+  --color-surface: #FFFFFF;
+  --color-muted-bg: #EEF2E8;
+  --color-selected-bg: #EEF3E8;
+  --color-upload-bg: #F5F8F1;
+  --color-line: #D8E0CF;
+  --color-ink: #1E2F1A;
+  --color-ink-muted: #5F6B58;
+  --color-sidebar-text: #CBD5C0;
+  --color-sidebar-subtext: #C3CEB7;
+  --color-success-bg: #E3F4EC;
+  --color-success-fg: #1F7A52;
+  --color-warning-bg: #FBF1DB;
+  --color-warning-fg: #8A6414;
+  --color-neutral-bg: #EEF2E8;
+  --color-neutral-fg: #4A5844;
+  --theme-page-light: #F5F6EF;
+  --theme-page-dark: #101711;
+
+  /* Radius */
+  --radius-bar: 6px;
+  --radius-control: 8px;
+  --radius-chip: 10px;
+  --radius-card: 12px;
+
+  /* Skala font (line-height "auto" Figma = normal) */
+  --text-11: 11px;  --text-11--line-height: normal;
+  --text-12: 12px;  --text-12--line-height: normal;
+  --text-13: 13px;  --text-13--line-height: normal;
+  --text-14: 14px;  --text-14--line-height: normal;
+  --text-15: 15px;  --text-15--line-height: 1.5;
+  --text-16: 16px;  --text-16--line-height: normal;
+  --text-20: 20px;  --text-20--line-height: normal;
+  --text-26: 26px;  --text-26--line-height: normal;
+  --text-30: 30px;  --text-30--line-height: normal;
+  --text-34: 34px;  --text-34--line-height: normal;
+  --text-46: 46px;  --text-46--line-height: 1.18;
+}
+
+/* Dark theme — tetap memakai token yang sama agar seluruh UI berganti secara konsisten. */
+html.dark {
+  --color-brand-900: #102015;
+  --color-brand-700: #3F7047;
+  --color-brand-500: #6F9A62;
+  --color-brand-100: #2A402D;
+  --color-gold-500: #E5BC49;
+  --color-page: #101711;
+  --color-surface: #1B251D;
+  --color-muted-bg: #1A261D;
+  --color-selected-bg: #223326;
+  --color-upload-bg: #1A2E20;
+  --color-line: #344438;
+  --color-ink: #E7F0E5;
+  --color-ink-muted: #A8B7A6;
+  --color-sidebar-text: #D4E1D0;
+  --color-sidebar-subtext: #A9BCA8;
+  --color-success-bg: #183A2B;
+  --color-success-fg: #8AD4AD;
+  --color-warning-bg: #403418;
+  --color-warning-fg: #F4CC69;
+  --color-neutral-bg: #2A362D;
+  --color-neutral-fg: #C3D0C4;
+}
+
+@layer base {
+  html, body { height: 100%; }
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color 220ms ease, color 220ms ease;
+  }
+
+  select,
+  option {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+  }
+}
+
+/* GSAP radial reveal saat tema berganti dari titik switch. */
+.theme-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  pointer-events: none;
+  background-color: var(--theme-page-light);
+  clip-path: circle(0 at 50% 50%);
+  will-change: clip-path;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition-overlay {
+    transition: none;
+  }
+}
+
+/* Dissolve transition (page & layout) — 200ms opacity fade */
+.dissolve-enter-active,
+.dissolve-leave-active {
+  transition: opacity 200ms ease;
+}
+.dissolve-enter-from,
+.dissolve-leave-to {
+  opacity: 0;
+}

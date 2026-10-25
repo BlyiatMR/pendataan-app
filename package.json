@@ -1,0 +1,38 @@
+{
+  "name": "sunggumanai-warga",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck && tsc --noEmit --project server/tsconfig.json",
+    "pretest": "npm run build",
+    "test": "node --test tests/crud.test.mjs",
+    "test:browser": "node tests/browser-smoke.mjs"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.18.0",
+    "@nuxt/fonts": "^0",
+    "@nuxt/icon": "^1",
+    "better-sqlite3": "^13.0.3",
+    "drizzle-kit": "^0.31.11",
+    "drizzle-orm": "^0.45.4",
+    "gsap": "^3.15.0",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.9",
+    "nuxt": "^3.21.11",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1",
+    "@tailwindcss/vite": "^4",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vue-tsc": "^2"
+  }
+}
